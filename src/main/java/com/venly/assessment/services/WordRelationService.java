@@ -20,6 +20,10 @@ public class WordRelationService {
         return wordRelationRepository.findAll();
     }
 
+    public List<WordRelation> getWordRelationsByType(RelationType relationType) {
+        return wordRelationRepository.findByRelationType(relationType);
+    }
+
     public void createWordRelation(String word1, String word2, RelationType relationType){
         WordRelation wordRelation = new WordRelation();
         wordRelation.setWord1(word1);
