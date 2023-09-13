@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface WordRelationRepository extends JpaRepository<WordRelation, Long> {
     List<WordRelation> findByRelationType(RelationType relationType);
+    boolean existsByWord1AndWord2AndRelationType(String word1, String word2, RelationType relationType);
 }

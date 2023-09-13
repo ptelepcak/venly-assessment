@@ -1,5 +1,6 @@
 package com.venly.assessment.services;
 
+import com.venly.assessment.exceptions.InverseExistsException;
 import com.venly.assessment.model.WordRelation;
 import com.venly.assessment.model.enums.RelationType;
 import com.venly.assessment.repositories.WordRelationRepository;
@@ -37,7 +38,10 @@ public class WordRelationService {
         return wordRelationRepository.findByRelationType(relationType);
     }
 
-    public void createWordRelation(String word1, String word2, RelationType relationType){
+    public void createWordRelation(String word1, String word2, RelationType relationType) throws InverseExistsException {
+        if(wordRelationRepository.existsByWord1AndWord2AndRelationType(word2, word1, relationType)) {
+            throw new InverseExistsException();
+        }
         WordRelation wordRelation = new WordRelation();
         wordRelation.setWord1(word1.toLowerCase().trim());
         wordRelation.setWord2(word2.toLowerCase().trim());
