@@ -20,9 +20,9 @@ public class WordRelationController {
         this.wordRelationService = wordRelationService;
     }
 
-    @GetMapping("/")
-    public List<WordRelation> getAllWordRelations() {
-        return wordRelationService.getAllWordRelations();
+    @GetMapping()
+    public List<WordRelation> getAllWordRelations(@RequestParam(name = "includeInverses", defaultValue = "false") Boolean includeInverses) {
+        return wordRelationService.getAllWordRelations(includeInverses);
     }
 
     @GetMapping("/{relationType}")
