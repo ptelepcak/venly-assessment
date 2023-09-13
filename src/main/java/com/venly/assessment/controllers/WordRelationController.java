@@ -7,6 +7,7 @@ import com.venly.assessment.services.WordRelationService;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class WordRelationController {
 
     private final WordRelationService wordRelationService;
 
+    @Autowired
     public WordRelationController(WordRelationService wordRelationService) {
         this.wordRelationService = wordRelationService;
     }
@@ -35,7 +37,7 @@ public class WordRelationController {
     }
 
     @PutMapping("/{word1}/{word2}/{relationType}")
-    public ResponseEntity<String> putWordRelation(@PathVariable @NotBlank String word1, @PathVariable String word2, @NotNull @PathVariable RelationType relationType){
+    public ResponseEntity<String> putWordRelation(@PathVariable String word1, @PathVariable String word2, @NotNull @PathVariable RelationType relationType){
         try {
             wordRelationService.createWordRelation(word1, word2, relationType);
         }
