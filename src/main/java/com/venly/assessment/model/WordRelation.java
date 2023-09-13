@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -15,7 +16,9 @@ public class WordRelation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
+    @NotBlank(message = "Word cannot be empty")
     private String word1;
+    @NotBlank(message = "Word cannot be empty")
     private String word2;
     private RelationType relationType;
     private Boolean inverse;

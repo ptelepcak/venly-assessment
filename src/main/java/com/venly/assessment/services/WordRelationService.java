@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class WordRelationService {
@@ -40,8 +39,8 @@ public class WordRelationService {
 
     public void createWordRelation(String word1, String word2, RelationType relationType){
         WordRelation wordRelation = new WordRelation();
-        wordRelation.setWord1(word1);
-        wordRelation.setWord2(word2);
+        wordRelation.setWord1(word1.toLowerCase().trim());
+        wordRelation.setWord2(word2.toLowerCase().trim());
         wordRelation.setRelationType(relationType);
         wordRelation.setInverse(false);
         wordRelationRepository.save(wordRelation);
